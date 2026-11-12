@@ -4,12 +4,12 @@ import(
 	"fmt"
 )
 
-func commandMap(cfg *config) error {
+func commandMap(cfg *config, _ []string) error {
 	url := "https://pokeapi.co/api/v2/location-area"
 	if cfg.Next != nil {
 		url = *cfg.Next
 	}
-	lp, err := getResponse(url)
+	lp, err := getResponseLocation(url)
 	if err != nil{
 		return err
 	}
@@ -21,7 +21,7 @@ func commandMap(cfg *config) error {
 	return nil
 }
 
-func commandMapb(cfg *config) error {
+func commandMapb(cfg *config, _ []string) error {
 	url := "https://pokeapi.co/api/v2/location-area"
 	if cfg.Previous != nil {
 		url = *cfg.Previous
@@ -29,7 +29,7 @@ func commandMapb(cfg *config) error {
 	if cfg.Previous == nil{
 		fmt.Println("You're on the first page")
 	}
-	lp, err := getResponse(url)
+	lp, err := getResponseLocation(url)
 	if err != nil{
 		return err
 	}
